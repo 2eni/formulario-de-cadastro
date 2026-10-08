@@ -4,6 +4,7 @@
 document.getElementById("cep").addEventListener("blur", (evento)=> {
     const elemento = evento.target;
     const cepInformado = elemento.value;
+    
 
     //Validar cep
     if(!(cepInformado.length === 8))
@@ -24,20 +25,29 @@ document.getElementById("cep").addEventListener("blur", (evento)=> {
         .catch(error=>  console.error("Erro ao  buscar CEP: ", error));
 })
 
+
 const botao = document.getElementById("btn");
-const nome = document.getElementById("nome");
-const cep = document.getElementById("cep");
-const estado = document.getElementById("estado");
-const cidade = document.getElementById("cidade");
-const logradouro = document.getElementById("logradouro");
-const bairro = document.getElementById("bairro");
-const numero = document.getElementById("numero");
+
+
 
 botao.addEventListener("click", ()=> {
-    const atualSalvo = localStorage.getItem('dados');
-    localStorage.setItem('dados', nome, cep, estado, cidade,  logradouro, bairro, numero);
+    const cadastro = {
+    nome: document.getElementById("nome").value,
+    cep: document.getElementById("cep").value,
+    estado: document.getElementById("estado").value,
+    cidade: document.getElementById("cidade").value,
+    logradouro: document.getElementById("logradouro").value,
+    bairro: document.getElementById("bairro").value,
+    numero: document.getElementById("numero").value,
+    };
+    
+    localStorage.setItem('dados', JSON.stringify(cadastro));
+    
+    const dadosSalvos = localStorage.getItem("dados");
+    const temsalvo = JSON.parse(dadosSalvos);
+    
 })
 
 document.addEventListener('DOMContentLoaded', ()=>{
-    const temSalvo = localStorage.getItem('dados');
+    
 })
